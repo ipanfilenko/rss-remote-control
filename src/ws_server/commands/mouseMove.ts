@@ -11,8 +11,10 @@ const getNewPositionForMouse = async (direction: string, distance: number) => {
     }[direction]!
 }
 
-export const mouseMove = async (direction: string, distance: number) => {
-    await mouse.move(getNewPositionForMouse(direction, distance));
+export const mouseMove = async (commandType: string, args: string[]) => {
+    const [distance = 0] = args;
 
-    return direction;
+    await mouse.move(getNewPositionForMouse(commandType, Number(distance)));
+
+    return commandType;
 }
