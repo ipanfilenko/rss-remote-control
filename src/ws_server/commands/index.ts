@@ -2,6 +2,7 @@ import { getMousePosition } from './getMousePosition';
 import { mouseMove } from './mouseMove';
 import { drawCircle } from './drawCircle';
 import { drawRectangle } from './drawRectangle';
+import { makeScreenshot } from './makeScreenshot';
 
 const commands: Record<string, (args: string[]) => Promise<string | void>> = {
     'mouse_position': getMousePosition,
@@ -12,6 +13,7 @@ const commands: Record<string, (args: string[]) => Promise<string | void>> = {
     'draw_circle': (args) => drawCircle('draw_circle', args),
     'draw_rectangle': (args) => drawRectangle('draw_rectangle', args),
     'draw_square': (args) => drawRectangle('draw_square', args),
+    'prnt_scrn': makeScreenshot,
 }
 
 export const runCommands = async (message: string) => {

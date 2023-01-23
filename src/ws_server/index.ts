@@ -19,10 +19,10 @@ export const initWSServer = (port: number) => {
         duplex.on('data', async (message) => {
             try {   
                 const results = await runCommands(message.toString());
-                console.log('message', message.toString());
-                console.log(`Command result: ${results}`);
-    
-                duplex.write(results);
+
+                if (results) {
+                    duplex.write(results);
+                }
             } catch (error) {
                 console.error(error);
             }
