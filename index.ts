@@ -1,7 +1,13 @@
-import { httpServer } from "./src/http_server/index";
-import { mouse } from "@nut-tree/nut-js";
+import dotenv from 'dotenv';
+import { httpServer } from './src/http_server';
+import { initWSServer } from './src/ws_server';
 
-const HTTP_PORT = 8181;
-console.log(mouse);
-console.log(`Start static http server on the ${HTTP_PORT} port!`);
+dotenv.config();
+
+const HTTP_PORT = process.env['HTTP_PORT'] || 8181;
+const WS_PORT = process.env['WS_PORT'] || 8080;
+
 httpServer.listen(HTTP_PORT);
+console.log(`Start static http server on the ${HTTP_PORT} port!`);
+
+initWSServer(+WS_PORT);
